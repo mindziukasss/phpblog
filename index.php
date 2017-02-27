@@ -1,26 +1,30 @@
-<?php include 'config/config.php'; ?>
-<?php include 'libraries/db.php'; ?>
+
 <?php include 'includes/header.php'; ?>
+
+
 <?php
   
   $db = new Db();
 
+  $query = "SELECT * FROM posts";
+  $posts = $db->select($query);
+
+
+  $query = "SELECT * FROM categories";
+  $categories = $db->select($query);
 ?>
+<?php if($posts) : ?>
+  <?php while($row = $posts->fetch_assoc()): ?>
+    <div class="blog-post">
+      <h2 class="blog-post-title"><?php echo $row['title']; ?></h2>
+        <p class="blog-post-meta"><?php echo formatDate ($row['date']); ?>by <a href="#"><?php echo $row['author']; ?></a></p>
+        <p><?php echo shortText($row['body']); ?></p>
+        <a class="readmore" href="post.php?id=<?php echo urlencode($row['id']); ?>">Read More</a>
+  <?php endwhile; ?>
+    </div><!-- /.blog-post -->
 
-<div class="blog-post">
-  <h2 class="blog-post-title">International PHP Conference 2017</h2>
-    <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
-    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
-    <p>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-    <a class="readmore" href="post.php?id=1">Read More</a>
-
-  </div><!-- /.blog-post -->
-
-  <div class="blog-post">
-    <h2 class="blog-post-title">PHP 7.1.Obeta4 Released</h2>
-    <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>
-      <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-      <a class="readmore" href="post.php?id=1">Read More</a>
-
+<?php else : ?>
+    <p>There are not post yet</p>
+<?php endif; ?>
 </div><!-- /.blog-post -->
 <?php include 'includes/footer.php'; ?>
