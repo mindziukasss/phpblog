@@ -5,9 +5,9 @@
     <input name="name" type="text" class="form-control" placeholder="Enter Category">
   </div>
   <div>
-    <input type="submit" type="submit" class="btn btn-default" value="Submit">
+    <input name="submit" type="submit" class="btn btn-default" value="Submit">
     <a href="index.php" class="btn btn-default">Cancel</a>
-    <input type="delete" type="submit" class="btn btn-danger" value="Delete">
+
   </div>
   <br>
 </form>
