@@ -1,4 +1,19 @@
 <?php include 'includes/header.php'; ?>
+<?php
+
+  $db = new Db();
+
+  if(isset($_POST['submit'])){
+    $name = mysqli_real_escape_string($db->link, $_POST['name']);    
+    if($name == ''){
+      $error = 'Please fill out required field';
+    } else {
+      $query = "INSERT INTO categories (name) VALUES ('$name')";
+      $insert_row = $db->insert($query);
+    }
+
+  }
+?>
 <form role="form" method="post" action="add_category.php">
   <div class="form-group">
     <label>category Name</label>

@@ -16,10 +16,10 @@ class db{
 
   }
 
-  private function connect (){
+  private function connect(){
     $this->link = new mysqli($this->host, $this->username, $this->password, $this->db_name);
 
-    if(!$this->link) {
+    if(!$this->link){
       $this->error = "Connection Failed: ".$this->link->connect_error;
       return false;
     }
@@ -29,7 +29,7 @@ class db{
     $result = $this->link->query($query) or die($this->link->error.__LINE__);
     if($result->num_rows > 0){
       return $result;
-    }else {
+    } else {
       return false;
     }
   }
@@ -37,33 +37,33 @@ class db{
   public function insert($query){
     $insert_row = $this->link->query($query) or die($this->link->error.__LINE__);
 
-    if ($insert_row){
+    if($insert_row){
       header("Location: index.php?msg=".urlencode('Record Added'));
       exit();
-    }else {
-      die('Error : ('. $this->link->errno.') '. $this->link->error);
+    } else {
+      die('Error : ('. $this->link->errno .') '. $this->link->error);
     }
   }
 
   public function update($query){
     $update_row = $this->link->query($query) or die($this->link->error.__LINE__);
 
-    if ($update_row){
-      header("Location: index.php?msg=".urlencode('Record Update'));
+    if($update_row){
+      header("Location: index.php?msg=".urlencode('Record Updated'));
       exit();
-    }else {
-      die('Error : ('. $this->link->errno.') '. $this->link->error);
+    } else {
+      die('Error : ('. $this->link->errno .') '. $this->link->error);
     }
   }
 
   public function delete($query){
     $delete_row = $this->link->query($query) or die($this->link->error.__LINE__);
 
-    if ($delete_row){
-      header("Location: index.php?msg=".urlencode('Record Delete'));
+    if($delete_row){
+      header("Location: index.php?msg=".urlencode('Record Deleted'));
       exit();
-    }else {
-      die('Error : ('. $this->link->errno.') '. $this->link->error);
+    } else {
+      die('Error : ('. $this->link->errno .') '. $this->link->error);
     }
   }
 

@@ -2,10 +2,11 @@
 
 $db = new Db;
 
-$query = "SELECT posts.*, categories.name FROM posts INNER JOIN categories ON posts.category = categories.id";
+$query = "SELECT posts.*, categories.name FROM posts INNER JOIN categories ON posts.category = categories.id
+          ORDER BY posts.title DESC";
 $posts = $db->select($query);
 
-$query = "SELECT * FROM categories";
+$query = "SELECT * FROM categories ORDER BY name DESC ";
 $categories = $db->select($query);
 
  ?>
