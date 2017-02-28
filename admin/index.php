@@ -6,7 +6,7 @@ $query = "SELECT posts.*, categories.name FROM posts INNER JOIN categories ON po
           ORDER BY posts.title DESC";
 $posts = $db->select($query);
 
-$query = "SELECT * FROM categories ORDER BY name DESC ";
+$query = "SELECT * FROM categories ORDER BY id DESC ";
 $categories = $db->select($query);
 
  ?>

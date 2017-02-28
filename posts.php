@@ -5,10 +5,10 @@
 
   if(isset($_GET['category'])){
     $category = $_GET['category'];
-    $query = "SELECT * FROM posts WHERE category = ".$category;
+    $query = "SELECT * FROM posts WHERE category = ".$category." ORDER BY id DESC";
     $posts = $db->select($query);
   }else {
-    $query = "SELECT * FROM posts";
+    $query = "SELECT * FROM posts ORDER BY id DESC";
     $posts = $db->select($query);
   }
   
